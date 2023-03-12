@@ -1,0 +1,8 @@
+#lang racket
+
+(define (fringe l)
+  (define (iter l acc)
+    (let ([current (car l)]
+          [next (cdr l)]          
+          (cond ((nil? current) acc)
+                ((list? current) (iter јј

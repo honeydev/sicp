@@ -1,0 +1,1 @@
+(defn double [procedure] (fn [arg] (procedure (procedure arg))))

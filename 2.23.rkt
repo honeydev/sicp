@@ -1,0 +1,11 @@
+ #lang racket
+
+(define (for-each null-procedure l)
+  (define (call-and-iter l next)
+    (null-procedure next)
+    (for-each null-procedure (cdr l)))
+  (if (empty? l)
+      #t
+      (call-and-iter l (car l))))
+
+(for-each print (list 1 2 3 4))  

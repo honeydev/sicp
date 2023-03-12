@@ -1,0 +1,40 @@
+#lang racket
+
+
+(define (make-mobile left right)
+  (list left right))
+
+
+(define (make-branch length structure)
+  (list length structure))
+
+(define (left-branch branch)
+  (car branch))
+
+(define (right-branch branch)
+  (cadr branch))
+
+(define (branch-length branch)
+  (car branch))
+
+(define (branch-structure branch)
+  (cadr branch))
+
+
+(define m
+  (make-mobile
+   (make-branch 1 (make-mobile (make-branch 2 (make-mobile (make-branch 3 4) (make-branch 5 6))) (make-branch 9 10)))
+   (make-branch 11 (make-mobile (make-branch 12 13) (make-branch 14 15)))))
+
+(define (branch-weight branch)
+  (+
+   (branch-length branch)
+   (let ([structure-or-value (branch-structure branch)])
+     (if (list? structure-or-value)
+         (structure-weight structure-or-value)
+         structure-or-value))))
+
+(define (structure-weight m)
+  (+ (branch-weight (left-branch m)) (branch-weight (right-branch m))))
+
+(structure-weight m)
