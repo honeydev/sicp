@@ -20,7 +20,6 @@
            (lambda (p) (and (= (car p) first) (= (cadr p) second)))
            pairs))))))
 
-
 (define (unique-pairs n)
   (let ([pairs
          (flatmap
@@ -45,3 +44,5 @@
   (list (car pair) (cadr pair) (+ (car pair) (cadr pair))))
 
 (println (unique-pairs 11))
+
+(println (flatmap (lambda (x) (list x)) (list 1 2 3)))

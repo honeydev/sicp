@@ -1,0 +1,15 @@
+#lang racket
+
+(define (accumulate op initial sequence)
+  (if (null? sequence)
+      initial
+      (op (car sequence)
+          (accumulate op initial (cdr sequence)))))
+
+(define (flatmap proc seq)
+  (accumulate append null (map proc seq)))
+
+
+(define (find-eq-triple n)
+  (flatmap (lambda (i) i) (range 1 n)))
+  
