@@ -1,5 +1,9 @@
 #lang racket
 
+(require "lib.rkt")
+
+(enumerate-interval 1 5)
+
 (define (accumulate op initial sequence)
   (if (null? sequence)
       initial
