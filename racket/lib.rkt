@@ -3,6 +3,7 @@
  enumerate-interval
  accumulate
  flatmap
+ all?
  )
 
 (define (enumerate-interval a b)
@@ -20,7 +21,7 @@
   (accumulate append null (map proc seq)))
 
 (define (permutations s)
-  (if (null? s) ; пустое множество?
+  (if (null? s) ; пустое множество?c
       (list null)
       (flatmap (lambda (x)
                  (map (lambda (p) (cons x p))
@@ -28,4 +29,7 @@
                s)))
 
 
-;; (define (all l predicate))
+(define (all? l [predicate (lambda (x) #t)])
+  (cond ((empty? l) #t)
+        ((not (predicate (car l))) #f)
+        (else (all? (cdr l) predicate))))
