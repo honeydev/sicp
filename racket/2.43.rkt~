@@ -1,4 +1,5 @@
 #lang racket
+
  
 (require "lib.rkt")
 
@@ -12,16 +13,13 @@
         (list empty-board)
         (filter
          (lambda (positions)
-           ; (lambda (x y) #t)
-            (safe-2? k positions)
-           )
+            (safe-2? k positions))
          (flatmap
-          (lambda (rest-of-queens)
-            (println rest-of-queens)
-            (map (lambda (new-row)
-                   (adjoin-position new-row k rest-of-queens))
-                 (enumerate-interval 1 board-size)))
-          (queen-cols (- k 1))))))
+(lambda (new-row)
+(map (lambda (rest-of-queens)
+(adjoin-position new-row k rest-of-queens))
+(queen-cols (- k 1))))
+(enumerate-interval 1 board-size)))))
   (queen-cols board-size))
 
 
@@ -47,4 +45,4 @@
   (lambda (x) (boolean=? #t x))))
 
 
-(println (length (queens 4)))
+(println (length (queens 8)))
